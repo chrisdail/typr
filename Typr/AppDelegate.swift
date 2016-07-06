@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         workspace = NSWorkspace.sharedWorkspace()
         
         statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(CGFloat(NSVariableStatusItemLength))
-        statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
+        statusItem.button?.image = NSImage(named: "glyphicons-269-keyboard-wireless")
         let menu = NSMenu()
         //menu.addItem(NSMenuItem(title: "Print Quote", action: Selector("printQuote:"), keyEquivalent: "P"))
         //menu.addItem(NSMenuItem.separatorItem())
