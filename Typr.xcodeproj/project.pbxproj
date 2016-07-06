@@ -13,6 +13,9 @@
 		86B6540B1D26C5CE00B66803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B654091D26C5CE00B66803 /* Main.storyboard */; };
 		86B654161D26C5CE00B66803 /* TyprTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B654151D26C5CE00B66803 /* TyprTests.swift */; };
 		86B654211D26C5CE00B66803 /* TyprUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B654201D26C5CE00B66803 /* TyprUITests.swift */; };
+		86B6542F1D28182700B66803 /* KeyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B6542E1D28182700B66803 /* KeyMonitor.swift */; settings = {ASSET_TAGS = (); }; };
+		86B654321D28745500B66803 /* Core_Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86B654301D28745500B66803 /* Core_Data.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		86B654361D29A41A00B66803 /* WordStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B654341D29A41A00B66803 /* WordStats.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		86B6541C1D26C5CE00B66803 /* TyprUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TyprUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B654201D26C5CE00B66803 /* TyprUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TyprUITests.swift; sourceTree = "<group>"; };
 		86B654221D26C5CE00B66803 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86B6542E1D28182700B66803 /* KeyMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyMonitor.swift; sourceTree = "<group>"; };
+		86B654311D28745500B66803 /* Core_Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Core_Data.xcdatamodel; sourceTree = "<group>"; };
+		86B654341D29A41A00B66803 /* WordStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordStats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +101,14 @@
 		86B654021D26C5CE00B66803 /* Typr */ = {
 			isa = PBXGroup;
 			children = (
+				86B654341D29A41A00B66803 /* WordStats.swift */,
 				86B654031D26C5CE00B66803 /* AppDelegate.swift */,
 				86B654051D26C5CE00B66803 /* ViewController.swift */,
 				86B654071D26C5CE00B66803 /* Assets.xcassets */,
 				86B654091D26C5CE00B66803 /* Main.storyboard */,
 				86B6540C1D26C5CE00B66803 /* Info.plist */,
+				86B6542E1D28182700B66803 /* KeyMonitor.swift */,
+				86B654301D28745500B66803 /* Core_Data.xcdatamodeld */,
 			);
 			path = Typr;
 			sourceTree = "<group>";
@@ -251,8 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86B654361D29A41A00B66803 /* WordStats.swift in Sources */,
 				86B654061D26C5CE00B66803 /* ViewController.swift in Sources */,
 				86B654041D26C5CE00B66803 /* AppDelegate.swift in Sources */,
+				86B6542F1D28182700B66803 /* KeyMonitor.swift in Sources */,
+				86B654321D28745500B66803 /* Core_Data.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +486,7 @@
 				86B654271D26C5CE00B66803 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86B654281D26C5CE00B66803 /* Build configuration list for PBXNativeTarget "TyprTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +495,7 @@
 				86B6542A1D26C5CE00B66803 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86B6542B1D26C5CE00B66803 /* Build configuration list for PBXNativeTarget "TyprUITests" */ = {
 			isa = XCConfigurationList;
@@ -490,8 +504,22 @@
 				86B6542D1D26C5CE00B66803 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		86B654301D28745500B66803 /* Core_Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				86B654311D28745500B66803 /* Core_Data.xcdatamodel */,
+			);
+			currentVersion = 86B654311D28745500B66803 /* Core_Data.xcdatamodel */;
+			path = Core_Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 86B653F81D26C5CE00B66803 /* Project object */;
 }

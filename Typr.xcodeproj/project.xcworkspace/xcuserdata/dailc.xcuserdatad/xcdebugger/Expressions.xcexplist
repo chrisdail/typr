@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "KeyMonitor.handler(NSEvent) -&gt; ():KeyMonitor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "event.modifierFlags">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
