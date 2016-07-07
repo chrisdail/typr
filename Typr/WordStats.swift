@@ -6,7 +6,6 @@
 //  Copyright © 2016 Christopher Dail. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 class WordStats: NSManagedObject {
@@ -34,7 +33,6 @@ class WordStats: NSManagedObject {
         do {
             try self.managedObjectContext?.save()
         } catch {
-            //let saveError = error as NSError
             print(error)
         }
     }
@@ -56,7 +54,6 @@ class WordStats: NSManagedObject {
                 return stats
             }
         } catch {
-            //let fetchError = error as NSError
             print(error)
         }
         

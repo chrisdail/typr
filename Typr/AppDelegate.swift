@@ -37,12 +37,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         //menu.addItem(NSMenuItem(title: "Print Quote", action: Selector("printQuote:"), keyEquivalent: "P"))
         //menu.addItem(NSMenuItem.separatorItem())
-        menu.addItem(NSMenuItem(title: "Quit", action: Selector("terminate:"), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "q"))
         statusItem.menu = menu
         
         monitor = KeyMonitor(managedObjectContext: managedObjectContext, statusItem: statusItem)
         
-        let mask = NSEventMask.KeyUpMask //NSEventMask.KeyDownMask.union(NSEventMask.KeyUpMask)
+        let mask = NSEventMask.KeyUpMask
         // keyboard listeners
         NSEvent.addGlobalMonitorForEventsMatchingMask(mask, handler: monitor!.handler)
     }
@@ -50,6 +50,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
         self.saveContext()
         NSStatusBar.systemStatusBar().removeStatusItem(statusItem)
+    }
+    
+    func quit(sender: AnyObject) {
+        NSApplication.sharedApplication().terminate(self)
     }
     
     func printQuote(sender: AnyObject) {
