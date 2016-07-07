@@ -27,6 +27,7 @@ class KeyMonitor {
         workspace = NSWorkspace.sharedWorkspace()
         
         stats = WordStats.findOrCreate(managedObjectContext)
+        updateStatusBar()
     }
     
     func handler(event: NSEvent) {
@@ -56,7 +57,10 @@ class KeyMonitor {
             stats = WordStats.findOrCreate(managedObjectContext)
         }
         stats.recordNewWord(appName)
-        
+        updateStatusBar()
+    }
+    
+    func updateStatusBar() {
         statusItem.title = String(format: "%d", stats.total.intValue)
     }
     
