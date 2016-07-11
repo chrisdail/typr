@@ -26,7 +26,9 @@ class WordStats: NSManagedObject {
         countByApp = stats as NSDictionary
         total = NSNumber(int: total.intValue + 1)
         save()
-        print(countByApp)
+        
+        // Log changes after every word
+        //print(countByApp)
     }
     
     func save() {

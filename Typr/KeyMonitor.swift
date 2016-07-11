@@ -20,6 +20,10 @@ class KeyMonitor {
     var lastWord = ""    
     var stats: WordStats
     
+    lazy var logPath: String = {
+        let documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+        return NSString(string: documents).stringByAppendingPathComponent("TyprWordStats.log")
+    }()
     
     init(managedObjectContext: NSManagedObjectContext, statusItem: NSStatusItem) {
         self.managedObjectContext = managedObjectContext
@@ -55,6 +59,7 @@ class KeyMonitor {
         // Detect if we have changed days
         if (!stats.isFromToday()) {
             stats = WordStats.findOrCreate(managedObjectContext)
+            logStats()
         }
         stats.recordNewWord(appName)
         updateStatusBar()
@@ -62,6 +67,31 @@ class KeyMonitor {
     
     func updateStatusBar() {
         statusItem.title = String(format: "%d", stats.total.intValue)
+    }
+    
+    // Logs out the daily summary
+    func logStats() {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.LongStyle
+        let dateString = formatter.stringFromDate(stats.date)
+        let message = "Totals for \(dateString): \(stats.total) \(stats.countByApp)\n"
+        
+        if let fileHandle = NSFileHandle(forWritingAtPath: logPath) {
+            defer {
+                fileHandle.closeFile()
+            }
+            fileHandle.seekToEndOfFile()
+            fileHandle.writeData(message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
+        }
+        else {
+            do {
+                try message.writeToFile(logPath, atomically: true, encoding: NSUTF8StringEncoding)
+            }
+            catch {
+                print(error)
+            }
+        }
+
     }
     
     // Get the current date without time information
@@ -73,7 +103,3 @@ class KeyMonitor {
     }
     
 }
-
-// 51 backspace
-// 117 delete
-// 
