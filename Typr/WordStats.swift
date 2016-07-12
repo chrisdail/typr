@@ -63,6 +63,7 @@ class WordStats: NSManagedObject {
         let stats = NSEntityDescription.insertNewObjectForEntityForName("WordStats", inManagedObjectContext:     managedObjectContext) as! WordStats
         stats.date = currentDate()
         stats.total = NSNumber(int: 0)
+        stats.countByApp = NSDictionary()
         return stats
     }
     

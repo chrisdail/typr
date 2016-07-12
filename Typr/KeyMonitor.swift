@@ -58,8 +58,8 @@ class KeyMonitor {
         
         // Detect if we have changed days
         if (!stats.isFromToday()) {
-            stats = WordStats.findOrCreate(managedObjectContext)
             logStats()
+            stats = WordStats.findOrCreate(managedObjectContext)
         }
         stats.recordNewWord(appName)
         updateStatusBar()
