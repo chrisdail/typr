@@ -11,20 +11,20 @@ import CoreData
 class WordStats: NSManagedObject {
 
     @NSManaged var total: NSNumber
-    @NSManaged var date: NSDate
+    @NSManaged var date: Date
     @NSManaged var countByApp: NSDictionary
 
     func recordNewWord(appName: String) {
         var stats = countByApp as! [String: NSNumber]
         
         if let count = stats[appName] {
-            stats[appName] = NSNumber(int: count.intValue + 1)
+            stats[appName] = NSNumber(value: count.intValue + 1)
         }
         else {
-            stats[appName] = NSNumber(int: 1)
+            stats[appName] = NSNumber(value: 1)
         }
         countByApp = stats as NSDictionary
-        total = NSNumber(int: total.intValue + 1)
+        total = NSNumber(value: total.intValue + 1)
         save()
         
         // Log changes after every word
@@ -40,19 +40,19 @@ class WordStats: NSManagedObject {
     }
     
     func isFromToday() -> Bool {
-        return WordStats.currentDate().isEqualToDate(date)
+        return WordStats.currentDate() == date
     }
     
     class func findOrCreate(managedObjectContext: NSManagedObjectContext) -> WordStats {
         // Try to find by the current date
-        let fetchRequest = NSFetchRequest(entityName: "WordStats")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WordStats")
         
         // Create Predicate
-        let predicate = NSPredicate(format: "%K == %@", "date", currentDate())
+        let predicate = NSPredicate(format: "%K == %@", "date", currentDate() as NSDate)
         fetchRequest.predicate = predicate
         
         do {
-            if let stats = try managedObjectContext.executeFetchRequest(fetchRequest).first as? WordStats {
+            if let stats = try managedObjectContext.fetch(fetchRequest).first as? WordStats {
                 return stats
             }
         } catch {
@@ -60,18 +60,17 @@ class WordStats: NSManagedObject {
         }
         
         // Record not found, create a new one
-        let stats = NSEntityDescription.insertNewObjectForEntityForName("WordStats", inManagedObjectContext:     managedObjectContext) as! WordStats
+        let stats = NSEntityDescription.insertNewObject(forEntityName: "WordStats", into: managedObjectContext) as! WordStats
         stats.date = currentDate()
-        stats.total = NSNumber(int: 0)
+        stats.total = NSNumber(value: 0)
         stats.countByApp = NSDictionary()
         return stats
     }
     
     // Get the current date without time information
-    class func currentDate() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let dateComponents = calendar.components([NSCalendarUnit.Day, NSCalendarUnit.Month,
-            NSCalendarUnit.Year, NSCalendarUnit.WeekOfYear], fromDate: NSDate())
-        return calendar.dateFromComponents(dateComponents)!
+    class func currentDate() -> Date {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        let date = Calendar.current.date(from: components)
+        return date!
     }
 }
